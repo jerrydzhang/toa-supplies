@@ -21,8 +21,6 @@ import java.util.*;
 )
 public class ToaSuppliesPlugin extends Plugin
 {
-//	replace with 810
-//	looting bag 516
 	private final int SUPPLY_ID = 810;
 	private boolean checkSnapshot = false;
 	private int waitTicks = 1;
@@ -55,8 +53,6 @@ public class ToaSuppliesPlugin extends Plugin
 	@Subscribe
 	public void onWidgetLoaded(WidgetLoaded widgetLoaded)
 	{
-//		change looting bag group id to toa supply 778
-//		WidgetInfo.LOOTING_BAG_CONTAINER.getGroupId()
 		if (widgetLoaded.getGroupId() != 778)
 		{
 			return;
@@ -70,7 +66,6 @@ public class ToaSuppliesPlugin extends Plugin
 		{
 			return;
 		}
-		client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "ItemContainerChange", null);
 		updateValue(itemHash,SUPPLY_ID);
 	}
 
@@ -86,7 +81,6 @@ public class ToaSuppliesPlugin extends Plugin
 				if (updateValue(inventorySnapshot,InventoryID.INVENTORY.getId()))
 				{
 					checkSnapshot = true;
-					client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", checkSnapshot + "", null);
 				}
 			}
 			else if (event.getMenuOption().equals("Use")
@@ -120,8 +114,6 @@ public class ToaSuppliesPlugin extends Plugin
 			return;
 		}
 
-		client.addChatMessage(ChatMessageType.GAMEMESSAGE, "",  "ran", null);
-
 		checkSnapshot = false;
 		waitTicks = 1;
 
@@ -135,7 +127,6 @@ public class ToaSuppliesPlugin extends Plugin
 		allPossibleItemIds.addAll(prevInventoryItemIdsSet);
 		allPossibleItemIds.addAll(currentInventoryItemIdsSet);
 
-		client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", allPossibleItemIds + "", null);
 
 		for(Integer itemId:allPossibleItemIds)
 		{
@@ -143,8 +134,6 @@ public class ToaSuppliesPlugin extends Plugin
 			int currentAmount = currentInventoryHash.get(itemId) != null ? currentInventoryHash.get(itemId) : 0;
 
 			int changeAmount = prevAmount - currentAmount;
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", changeAmount + "", null);
-
 
 			itemHash.merge(itemId, changeAmount, Integer::sum);
 		}

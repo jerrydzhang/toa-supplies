@@ -14,10 +14,7 @@ import java.math.BigDecimal;
 
 class ToaSuppliesOverlay extends WidgetItemOverlay
 {
-    private final Client client;
     private final ToaSuppliesConfig config;
-    private final TooltipManager tooltipManager;
-    private final ItemManager itemManager;
     private final ToaSuppliesPlugin plugin;
 
     private static final int[] potions = {27315, 27327, 27347};
@@ -25,12 +22,9 @@ class ToaSuppliesOverlay extends WidgetItemOverlay
     private static final Color[] potionColors = {Color.yellow,Color.magenta,Color.white};
 
     @Inject
-    ToaSuppliesOverlay(Client client, ToaSuppliesConfig config, TooltipManager tooltipManager, ItemManager itemManager, ToaSuppliesPlugin plugin)
+    ToaSuppliesOverlay(ToaSuppliesConfig config, ToaSuppliesPlugin plugin)
     {
-        this.tooltipManager = tooltipManager;
-        this.client = client;
         this.config = config;
-        this.itemManager = itemManager;
         this.plugin = plugin;
         showOnInventory();
     }
@@ -45,7 +39,6 @@ class ToaSuppliesOverlay extends WidgetItemOverlay
 
         for (int i = 0; i < potions.length; i++)
         {
-            int id = potions[1];
             BigDecimal amount = BigDecimal.valueOf(plugin.getAmount(potions[i]));
 
             if (config.showSips())
@@ -65,28 +58,6 @@ class ToaSuppliesOverlay extends WidgetItemOverlay
     private void drawString(Graphics2D graphics, String text,WidgetItem widgetItem,Color color,int i)
     {
         graphics.setColor(color);
-
         graphics.drawString(text, widgetItem.getCanvasBounds().x, widgetItem.getCanvasBounds().y + 10 + (i*10));
-
-
-
-//        final int height;
-//        final Color color;
-//
-//        final Point location = widgetItem.getCanvasLocation();
-//
-//        if (amount < 10)
-//        {
-//            height = amount;
-//            color = Color.RED;
-//        }
-//        else
-//        {
-//            height = Math.max(10, amount / 2);
-//            color = Color.GREEN;
-//        }
-//
-//        graphics.setColor(color);
-//        graphics.fillRect(widgetItem.getCanvasBounds().x + 11, widgetItem.getCanvasBounds().y + (i*10), 2, height);
     }
 }
