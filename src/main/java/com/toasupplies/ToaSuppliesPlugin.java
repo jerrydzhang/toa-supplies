@@ -74,7 +74,7 @@ public class ToaSuppliesPlugin extends Plugin
 	{
 		if (event.getWidget() != null)
 		{
-			if ((event.getWidget().getItemId() == ItemID.SUPPLIES || event.getWidget().getItemId() == ItemID.LOOTING_BAG_22586)
+			if (event.getWidget().getItemId() == ItemID.SUPPLIES
 					&& (event.getMenuOption().equals("Withdraw 1") || event.getMenuOption().equals("Withdraw All") || event.getMenuOption().equals("Resupply")))
 
 			{
@@ -93,7 +93,7 @@ public class ToaSuppliesPlugin extends Plugin
 				RaidsPotions raidsPotion = RaidsPotions.findItem(firstSelectedItemID);
 
 				if (raidsPotion != null
-						&& (secondSelectedItemID == ItemID.SUPPLIES || secondSelectedItemID == ItemID.LOOTING_BAG_22586))
+						&& secondSelectedItemID == ItemID.SUPPLIES)
 				{
 					itemHash.merge(raidsPotion.getPotionType(), raidsPotion.getCharges(), Integer::sum);
 				}
@@ -161,6 +161,7 @@ public class ToaSuppliesPlugin extends Plugin
 		return itemHash.get(id) != null ? itemHash.get(id) : 0;
 	}
 	@Provides
+
 	ToaSuppliesConfig provideConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(ToaSuppliesConfig.class);

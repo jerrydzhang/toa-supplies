@@ -32,7 +32,7 @@ class ToaSuppliesOverlay extends WidgetItemOverlay
     @Override
     public void renderItemOverlay(Graphics2D graphics, int itemId, WidgetItem widgetItem)
     {
-        if (itemId != ItemID.LOOTING_BAG && itemId != ItemID.LOOTING_BAG_22586 && itemId != ItemID.SUPPLIES && itemId != ItemID.ZARYTE_CROSSBOW)
+        if (itemId != ItemID.SUPPLIES)
         {
             return;
         }
